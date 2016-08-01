@@ -58,6 +58,7 @@ function disconnect-allRdsUser {
     foreach ($session in $sessions) {
 
         Invoke-RDUserLogoff -HostServer $server -UnifiedSessionID $session -Force
+        write-host "Disconnecting session ID: $session..."
 
     }
 
