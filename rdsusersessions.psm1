@@ -39,15 +39,15 @@ function disconnect-allRdsUser {
 
     if ($connectionState -eq "disconnected") {
 
-        $sessions = (get-rdusersession -ConnectionBroker rdsbrokers.hellermanntyton.co.uk | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_DISCONNECTED"))}).UnifiedSessionId
+        $sessions = (get-rdusersession | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_DISCONNECTED"))}).UnifiedSessionId
 
     } elseif ($connectionState -eq "active") {
 
-        $sessions = (get-rdusersession -ConnectionBroker rdsbrokers.hellermanntyton.co.uk | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_ACTIVE"))}).UnifiedSessionId
+        $sessions = (get-rdusersession | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_ACTIVE"))}).UnifiedSessionId
 
     } elseif ($connectionState -eq "all") {
 
-        $sessions = (get-rdusersession -ConnectionBroker rdsbrokers.hellermanntyton.co.uk | where {$_.hostserver -like "*$server*"}).UnifiedSessionId
+        $sessions = (get-rdusersession | where {$_.hostserver -like "*$server*"}).UnifiedSessionId
 
     } else {
 
@@ -102,15 +102,15 @@ function get-allrdsuser {
 
     if ($connectionState -eq "disconnected") {
 
-        get-rdusersession -ConnectionBroker rdsbrokers.hellermanntyton.co.uk | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_DISCONNECTED"))}
+        get-rdusersession | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_DISCONNECTED"))}
 
     } elseif ($connectionState -eq "active") {
 
-        get-rdusersession -ConnectionBroker rdsbrokers.hellermanntyton.co.uk | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_ACTIVE"))}
+        get-rdusersession | where {(($_.hostserver -like "*$server*") -and ($_.sessionstate -eq "STATE_ACTIVE"))}
 
     } elseif ($connectionState -eq "all") {
 
-        get-rdusersession -ConnectionBroker rdsbrokers.hellermanntyton.co.uk | where {$_.hostserver -like "*$server*"}
+        get-rdusersession | where {$_.hostserver -like "*$server*"}
 
     } else {
 
